@@ -1,0 +1,16 @@
+[
+    {
+        "title": "TechLatest",
+        "description": "Your daily dose of the latest in tech and gadgets.",
+        "image": "img/techlatest-logo.png",
+        "link": "https://tech-latest.com",
+        "rss": "https://tech-latest.com/feed"
+    },
+    {
+        "title": "eSportsLatest",
+        "description": "Explore the world of competitive gaming and eSports news.",
+        "image": "img/esportslatest-logo.png",
+        "link": "https://esportslatest.net",
+        "rss": "https://esportslatest.net/feed"
+    }
+]
