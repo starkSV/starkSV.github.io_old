@@ -9,10 +9,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const backToTopButton = document.getElementById("back-to-top");
 
     if (backToTopButton) {
+        // Show or hide the button based on scroll position
         window.addEventListener("scroll", () => {
             backToTopButton.style.display = window.scrollY > 300 ? "block" : "none";
         });
 
+        // Scroll to top when the button is clicked
         backToTopButton.addEventListener("click", () => {
             window.scrollTo({
                 top: 0,
@@ -27,8 +29,8 @@ document.addEventListener("DOMContentLoaded", () => {
 // Initialize AOS (Animation on Scroll)
 document.addEventListener("DOMContentLoaded", () => {
     AOS.init({
-        duration: 1000,
-        once: true,
+        duration: 1000, // Animation duration in milliseconds
+        once: true, // Whether animation should happen only once
     });
 });
 
@@ -87,6 +89,35 @@ document.addEventListener("DOMContentLoaded", () => {
         .catch(error => console.error("Error fetching blogs:", error));
 });
 
+
+// Dark Mode Toggle Button
+const darkModeToggle = document.getElementById("dark-mode-toggle");
+
+if (localStorage.getItem("darkMode") === "enabled") {
+    enableDarkMode();
+}
+
+// Toggle dark mode on button click
+darkModeToggle.addEventListener("click", () => {
+    document.body.classList.contains("dark-mode") ? disableDarkMode() : enableDarkMode();
+});
+
+function enableDarkMode() {
+    document.body.classList.add("dark-mode");
+    document.querySelectorAll("header, footer, .hero, .about-section, .blogs-section, .blog-card, .skills-section, .contact-section, .contact-section p, .contact-icon, .toast")
+        .forEach(element => element.classList.add("dark-mode"));
+    darkModeToggle.textContent = "☀️";
+    localStorage.setItem("darkMode", "enabled");
+}
+
+function disableDarkMode() {
+    document.body.classList.remove("dark-mode");
+    document.querySelectorAll("header, footer, .hero, .about-section, .blogs-section, .blog-card, .skills-section, .contact-section, .contact-icon, .toast")
+        .forEach(element => element.classList.remove("dark-mode"));
+    darkModeToggle.textContent = "🌙";
+    localStorage.setItem("darkMode", "disabled");
+}
+
 // Toast Notification
 const showToast = (message) => {
     const toast = document.getElementById("toast");
@@ -112,7 +143,7 @@ document.getElementById("contact-form").addEventListener("submit", function (e) 
         });
 });
 
-// Interactive Canvas in Hero Section
+// interactive canvas in hero
 document.addEventListener("DOMContentLoaded", () => {
     const canvas = document.getElementById("interactive-bg");
     const ctx = canvas.getContext("2d");
@@ -120,6 +151,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const numParticles = 100;
     const maxDistance = 100;
 
+    // Resize Canvas to Fit Screen
     const resizeCanvas = () => {
         canvas.width = canvas.offsetWidth;
         canvas.height = canvas.offsetHeight;
@@ -127,6 +159,7 @@ document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener("resize", resizeCanvas);
     resizeCanvas();
 
+    // Particle Constructor
     class Particle {
         constructor(x, y) {
             this.x = x || Math.random() * canvas.width;
@@ -144,15 +177,17 @@ document.addEventListener("DOMContentLoaded", () => {
         draw() {
             ctx.beginPath();
             ctx.arc(this.x, this.y, 2, 0, Math.PI * 2);
-            ctx.fillStyle = "#007bff"; // Fixed color #007bff
+            ctx.fillStyle = getParticleColor(); // Dynamic particle color
             ctx.fill();
         }
     }
 
+    // Create Particles
     for (let i = 0; i < numParticles; i++) {
         particles.push(new Particle());
     }
 
+    // Draw Lines Between Close Particles
     const drawLines = () => {
         for (let i = 0; i < particles.length; i++) {
             for (let j = i + 1; j < particles.length; j++) {
@@ -164,7 +199,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     ctx.beginPath();
                     ctx.moveTo(particles[i].x, particles[i].y);
                     ctx.lineTo(particles[j].x, particles[j].y);
-                    ctx.strokeStyle = `rgba(0, 123, 255, ${1 - dist / maxDistance})`;
+                    ctx.strokeStyle = getLineColor(dist); // Dynamic line color
                     ctx.lineWidth = 1;
                     ctx.stroke();
                 }
@@ -172,6 +207,17 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     };
 
+    // Get Colors Based on Dark Mode
+    const getParticleColor = () => {
+        return document.body.classList.contains("dark-mode") ? "#ffffff" : "#007bff";
+    };
+
+    const getLineColor = (dist) => {
+        const baseColor = document.body.classList.contains("dark-mode") ? "255, 255, 255" : "0, 123, 255";
+        return `rgba(${baseColor}, ${1 - dist / maxDistance})`;
+    };
+
+    // Animate Particles
     const animate = () => {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -184,6 +230,15 @@ document.addEventListener("DOMContentLoaded", () => {
         requestAnimationFrame(animate);
     };
     animate();
+
+    // Listen for Dark Mode Changes
+    const darkModeToggle = document.getElementById("dark-mode-toggle");
+    darkModeToggle.addEventListener("click", () => {
+        setTimeout(() => {
+            // Force canvas redraw on theme change
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }, 300); // Adjust delay to match transition time
+    });
 });
 
 // Game
@@ -237,6 +292,7 @@ document.addEventListener("DOMContentLoaded", () => {
     startGameBtn.addEventListener("click", startGame);
 });
 
+
 //Header
 document.addEventListener("DOMContentLoaded", () => {
     const header = document.querySelector("header");
@@ -252,7 +308,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // Check on page load and during scroll
     handleHeaderBackground();
     window.addEventListener("scroll", handleHeaderBackground);
-    window.addEventListener("scroll", handleHeaderScroll);
 });
 
 
@@ -281,3 +336,5 @@ document.addEventListener("DOMContentLoaded", () => {
     adjustHeroPadding();
     window.addEventListener("resize", adjustHeroPadding);
 });
+
+

@@ -8,7 +8,8 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
 </head>
-<body class="dynamic-bg">
+<body>
+    <!--<div class="dynamic-bg"></div>-->
     <header>
         <div class="container">
             <div class="logo">
@@ -22,7 +23,7 @@
             </nav>
         </div>
     </header>
-    <section class="hero" >
+    <section class="hero">
         <canvas id="interactive-bg"></canvas>
         <h2>Welcome to My Portfolio</h2>
         <p>I'm a full-time blogger and tech enthusiast, managing TechLatest and eSportsLatest.</p>
@@ -30,7 +31,7 @@
         <a href="https://esportslatest.net" target="_blank" style="margin-left: 10px;">Visit eSportsLatest</a>
     </section>
     <!-- About Me Start -->    
-    <section id="about" class="section" data-aos="fade-up">
+    <section id="about" class="about-section" data-aos="fade-up">
         <div class="about-container">
             <div class="about-text">
                 <h2>About Me</h2>
@@ -52,12 +53,12 @@
         </div>
     </section>
     <!-- Blog Section Start -->     
-    <section id="blogs" class="section" data-aos="fade-up">
+    <section id="blogs" class="blogs-section" data-aos="fade-up">
         <h2>My Blogs</h2>
         <div class="blogs-container"></div>
     </section>
     <!-- Skills Section Start --> 
-    <section id="skills" class="section" data-aos="fade-up">
+    <section id="skills" class="skills-section" data-aos="fade-up">
         <h2>Skills & Interests</h2>
         <div class="skills-container">
             <!-- Skills -->
@@ -65,7 +66,7 @@
                 <h3>Skills</h3>
                 <ul>
                     <li><i class="fas fa-pen-alt"></i> Blogging & SEO</li>
-                    <li><i class="fas fa-code"></i> HTML, CSS, JS, Python</li>
+                    <li><i class="fas fa-code"></i> HTML, CSS, JavaScript</li>
                     <li><i class="fas fa-edit"></i> Tech Writing & Editing</li>
                     <li><i class="fas fa-tasks"></i> Project Management</li>
                 </ul>
@@ -83,7 +84,7 @@
         </div>
     </section>
     <!-- Contact Section Start --> 
-    <section id="contact" class="section" data-aos="fade-up">
+    <section id="contact" class="contact-section" data-aos="fade-up">
         <h2>Get in Touch</h2>
         <p>Feel free to reach out to me via email or connect with me on social media.</p>
         <div class="contact-links">
@@ -108,7 +109,7 @@
         </form>
         <p id="status-message" style="display: none; font-size: 1rem; margin-top: 1rem;"></p>
     </section>
-    <section id="game-section" class="section">
+    <section id="game-section" class="game-section">
         <h2>Catch the Stars</h2>
         <p>Click on the stars to score points! You have 30 seconds.</p>
         <div id="game-container">
@@ -116,10 +117,12 @@
         </div>
         <button id="start-game-btn">Start Game</button>
     </section>
+    
     <footer>
         <p>&copy; 2024 Shekhar Vaidya | Hosted on GitHub Pages</p>
     </footer>
     <div id="toast" class="toast">Message Sent Successfully!</div>
+    <button id="dark-mode-toggle" title="Toggle Dark Mode">🌙</button>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
     <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
