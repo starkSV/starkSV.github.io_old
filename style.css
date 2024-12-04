@@ -53,7 +53,7 @@ body {
     padding: 0;
     background-color: #f4f4f4;
     animation: gradientAnimation 15s ease infinite;
-    color: #333; /* Neutral text color */
+    color: white; /* Neutral text color */
     line-height: 1.6;
     font-family: Arial, sans-serif;
     transition: background-color 0.3s ease, color 0.3s ease;
@@ -286,16 +286,6 @@ nav a:hover {
     pointer-events: none; /* Prevent interaction with the canvas */
 }
 
-/* Section */
-.blogs-section, .skills-section, .about-section, .contact-section, .game-section {
-    background-color: #ffffff; /* Neutral white background */
-    padding: 4rem 1rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    margin: 2rem auto;
-    max-width: 1200px;
-}
-
 /* About Section */
 .about-section {
     padding: 4rem 1rem;
@@ -364,7 +354,7 @@ nav a:hover {
     gap: 2rem;
 }
 .blog-card {
-    background-color: #fff;
+    background-color: #252624;
     padding: 1.5rem;
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -378,12 +368,13 @@ nav a:hover {
     transform: translateY(-10px);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    background-color: #f0f8ff; /* Light background change */
+    /* background-color: #f0f8ff; Light background change */
+    background-color: #252624;
 }
 
 .blog-card h3 {
     font-size: 1.5rem;
-    color: #333;
+    color: white;
     margin-bottom: 1rem;
 }
 .blog-card p {
@@ -409,7 +400,7 @@ nav a:hover {
     height: auto; /* Maintain aspect ratio */
     margin-bottom: 1rem;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px rgba(37, 38, 36, 0.2);
     object-fit: contain; /* Ensures the entire logo fits inside the defined size */
 }
 
@@ -457,7 +448,7 @@ nav a:hover {
 .skills h3, .interests h3 {
     font-size: 1.5rem;
     margin-bottom: 1rem;
-    color: #333;
+    color: white;
 }
 .skills ul, .interests ul {
     list-style: none; /* Removes bullets */
@@ -486,7 +477,7 @@ nav a:hover {
 }
 
 .project-card {
-    background-color: #fff;
+    background-color: #252624;
     padding: 1.5rem;
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -500,13 +491,13 @@ nav a:hover {
     transform: translateY(-5px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    background-color: #f0f8ff; /* Light background change */
+    background-color: #252624; /* Light background change */
 }
 
 .project-card h3 {
     font-size: 1.5rem;
     margin-bottom: 0.5rem;
-    color: #333;
+    color: white;
 }
 
 .project-card p {
@@ -608,8 +599,8 @@ nav a:hover {
 }
 
 .contact-form input, .contact-form textarea {
-    background-color: #333333;
-    color: #ffffff;
+    background-color: #252624;
+    color: #252624;
     border: 1px solid #444444;
     transition: background-color 0.3s ease, border-color 0.3s ease;
 }
@@ -714,7 +705,7 @@ nav a:hover {
 .latest-posts h4 {
     font-size: 1rem;
     margin-bottom: 0.5rem;
-    color: #333;
+    color: white;
 }
 
 .latest-posts ol {
@@ -729,7 +720,7 @@ nav a:hover {
 }
 
 .latest-posts ol li a {
-    color: #000000; /* Default color for links */
+    color: white; /* Default color for links */
     text-decoration: none;
     transition: color 0.3s ease;
 }
@@ -801,9 +792,20 @@ nav a:hover {
     }
 }
 
+/* Section */
+.blogs-section, .skills-section, .about-section, .contact-section, .game-section {
+    background-color: #ffffff; /* Neutral white background */
+    padding: 4rem 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin: 2rem auto;
+    max-width: 1200px;
+}
+
 /* Sections */
 .section {
-    background: linear-gradient(120deg, rgba(240, 240, 240, 1), rgba(255, 255, 255, 1));
+    background: linear-gradient(120deg, rgba(50, 50, 50, 0.9), rgba(30, 30, 30, 0.9));
+    /* background: rgba(30, 30, 30, 0.85); Semi-transparent dark background */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); /* Subtle shadow */
     border-radius: 10px;
     border: 1px solid rgba(0, 0, 0, 0.1);
@@ -829,7 +831,7 @@ nav a:hover {
 }
 
 .section p {
-    color: #333; /* Ensure good readability */
+    color: #ffffff; /* Ensure good readability */
 }
 
 .section h2 {
@@ -841,7 +843,8 @@ nav a:hover {
 }
 
 .section:hover {
-    background: linear-gradient(120deg, rgba(255, 255, 255, 1), rgba(230, 230, 230, 1));
+    /* background: linear-gradient(120deg, rgba(255, 255, 255, 1), rgba(230, 230, 230, 1)); */
+    background: #252624;
     transition: background 0.5s ease-in-out;
 }
 
@@ -978,3 +981,4 @@ a:hover {
         justify-content: center; /* Aligns icons and text at the center */
     }
 }
+
