@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio - Shekhar Vaidya</title>
+    <title>Shekhar Vaidya -  Blogger, Web Developer</title>
     <link rel="stylesheet" href="style.css">
     <meta name="description" content="Shekhar Vaidya is a Blogger, a Web Developer, a CSE UG and a learner who's learning about CS and programming." />
     <meta name="keywords" content="Shekhar Vaidya, Techlatest, eSportslatest" />
@@ -13,6 +13,7 @@
     <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
 </head>
 <body class="dynamic-bg">
+    <canvas id="interactive-bg"></canvas>
     <header>
         <div class="container">
             <div class="logo">
@@ -22,12 +23,13 @@
                 <a href="#about" class="nav-link">About</a>
                 <a href="#blogs" class="nav-link">Blogs</a>
                 <a href="#skills" class="nav-link">Skills</a>
+                <a href="#projects" class="nav-link">Projects</a>
                 <a href="#contact" class="nav-link">Contact</a>
+                <a href="#game-section" class="nav-link">Game</a>
             </nav>
         </div>
     </header>
     <section class="hero" >
-        <canvas id="interactive-bg"></canvas>
         <h2>Welcome to My Portfolio</h2>
         <p>I'm a full-time blogger and tech enthusiast, managing TechLatest and eSportsLatest.</p>
         <a href="https://tech-latest.com" target="_blank">Visit TechLatest</a>
@@ -86,6 +88,42 @@
             </div>
         </div>
     </section>
+    <!-- Projects Section Start -->
+    <section id="projects" class="section" data-aos="fade-up">
+        <h2>Projects</h2>
+        <div class="projects-container">
+            <div class="project-card">
+                <h3>MSDL</h3>
+                <p class="description">Microsoft Software Download Listing lets you browse and download products from Microsoft Software Download pages.</p>
+                <p><strong>Tech Stack:</strong> HTML, CSS, JavaScript</p>
+                <p><strong>Status:</strong> Completed</p>
+                <div class="links">
+                    <a href="https://github.com/starkSV/msdl" target="_blank" class="btn">GitHub Repo</a>
+                    <a href="https://shekharvaidya.in/msdl/" target="_blank" class="btn">Live Website</a>
+                </div>
+            </div>
+            <div class="project-card">
+                <h3>OSSL</h3>
+                <p class="description">Explore the best open-source tools for development, design, and more in our Open Source Software Listing and you can directly download from here.</p>
+                <p><strong>Tech Stack:</strong> HTML, CSS, JavaScript</p>
+                <p><strong>Status:</strong> Ongoing</p>
+                <div class="links">
+                    <a href="https://github.com/starkSV/OSSL" target="_blank" class="btn">GitHub Repo</a>
+                    <a href="https://shekharvaidya.in/OSSL/" target="_blank" class="btn">Live Website</a>
+                </div>
+            </div>
+            <div class="project-card">
+                <h3>PBCC</h3>
+                <p class="description">PC Build Compatibility Checker is a simple tool which can be used to check the compatibility of various components while building a custom PC.</p>
+                <p><strong>Tech Stack:</strong> HTML, CSS, JavaScript, Python (Flask, Flask-CORS), SQLite, </p>
+                <p><strong>Status:</strong> Early Stage</p>
+                <div class="links">
+                    <a href="#" target="_blank" class="btn">GitHub Repo</a>
+                    <a href="#" target="_blank" class="btn">Live Website</a>
+                </div>
+            </div>
+        </div>
+    </section>
     <!-- Contact Section Start --> 
     <section id="contact" class="section" data-aos="fade-up">
         <h2>Get in Touch</h2>
@@ -112,6 +150,7 @@
         </form>
         <p id="status-message" style="display: none; font-size: 1rem; margin-top: 1rem;"></p>
     </section>
+    <!-- Game Section Start -->
     <section id="game-section" class="section">
         <h2>Catch the Stars</h2>
         <p>Click on the stars to score points! You have 30 seconds.</p>
