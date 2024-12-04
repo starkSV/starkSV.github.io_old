@@ -116,14 +116,17 @@ document.getElementById("contact-form").addEventListener("submit", function (e) 
 document.addEventListener("DOMContentLoaded", () => {
     const canvas = document.getElementById("interactive-bg");
     const ctx = canvas.getContext("2d");
+    //console.log("Canvas initialized:", canvas);
     const particles = [];
-    const numParticles = 150;
-    const maxDistance = 80;
+    const numParticles = 100;
+    const maxDistance = 100;
+    const mouse = { x: null, y: null };
 
-    // Resize Canvas to Fit Viewport
+    // Resize Canvas to Cover Full Page
     const resizeCanvas = () => {
-        canvas.width = window.innerWidth; // Full viewport width
-        canvas.height = window.innerHeight; // Full viewport height
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        //console.log("Canvas resized to:", canvas.width, canvas.height);
     };
     window.addEventListener("resize", resizeCanvas);
     resizeCanvas();
@@ -135,6 +138,7 @@ document.addEventListener("DOMContentLoaded", () => {
             this.y = y || Math.random() * canvas.height;
             this.vx = Math.random() * 2 - 1;
             this.vy = Math.random() * 2 - 1;
+            //console.log("Particle created at:", this.x, this.y);
         }
         move() {
             this.x += this.vx;
@@ -142,17 +146,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
             if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+            //console.log("Particle moved to:", this.x, this.y);
         }
         draw() {
             ctx.beginPath();
             ctx.arc(this.x, this.y, 2, 0, Math.PI * 2);
-            ctx.fillStyle = "rgba(255, 255, 255, 0.8)"; // Light particles for dark sections #007bff
-
+            ctx.fillStyle = "rgba(255, 255, 255, 0.8)";
             ctx.fill();
         }
     }
 
-    // Create Particles
+    // Create Initial Particles
     for (let i = 0; i < numParticles; i++) {
         particles.push(new Particle());
     }
@@ -166,10 +170,11 @@ document.addEventListener("DOMContentLoaded", () => {
                     particles[i].y - particles[j].y
                 );
                 if (dist < maxDistance) {
+                    //console.log("Drawing line between particles at distance:", dist);
                     ctx.beginPath();
                     ctx.moveTo(particles[i].x, particles[i].y);
                     ctx.lineTo(particles[j].x, particles[j].y);
-                    ctx.strokeStyle = `rgba(0, 123, 255, ${1 - dist / maxDistance})`; // Line color
+                    ctx.strokeStyle = `rgba(0, 123, 255, ${1 - dist / maxDistance})`;
                     ctx.lineWidth = 1;
                     ctx.stroke();
                 }
@@ -177,9 +182,33 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     };
 
-    // Animate Particles
+    // Add Hover Interaction
+    canvas.addEventListener("mousemove", (e) => {
+        console.log("Mouse moved at:", e.clientX, e.clientY);
+        const rect = canvas.getBoundingClientRect();
+        mouse.x = e.clientX - rect.left;
+        mouse.y = e.clientY - rect.top;
+
+        // Add a particle at the mouse position
+        console.log("Relative mouse position:", mouse.x, mouse.y);
+        particles.push(new Particle(mouse.x, mouse.y));
+
+        // Limit particles to avoid performance issues
+        if (particles.length > numParticles + 20) {
+            particles.shift(); // Remove the oldest particle
+            console.log("Particle removed. Total particles:", particles.length);
+        }
+    });
+
+    canvas.addEventListener("mouseleave", () => {
+        mouse.x = null;
+        mouse.y = null;
+    });
+
+    // Animation Loop
     const animate = () => {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
+        //console.log("Animating... Particle count:", particles.length);
 
         particles.forEach((p) => {
             p.move();
@@ -191,7 +220,6 @@ document.addEventListener("DOMContentLoaded", () => {
     };
     animate();
 });
-
 
 // Game
 document.addEventListener("DOMContentLoaded", () => {
@@ -244,34 +272,23 @@ document.addEventListener("DOMContentLoaded", () => {
     startGameBtn.addEventListener("click", startGame);
 });
 
-//Header
-document.addEventListener("DOMContentLoaded", () => {
-    const header = document.querySelector("header");
+// //Header
+// document.addEventListener("DOMContentLoaded", () => {
+//     const header = document.querySelector("header");
 
-    const handleHeaderBackground = () => {
-        if (window.scrollY > 50) {
-            header.classList.add("scrolled");
-        } else {
-            header.classList.remove("scrolled");
-        }
-    };
+//     const handleHeaderBackground = () => {
+//         if (window.scrollY > 50) {
+//             header.classList.add("scrolled");
+//         } else {
+//             header.classList.remove("scrolled");
+//         }
+//     };
 
-    // Check on page load and during scroll
-    handleHeaderBackground();
-    window.addEventListener("scroll", handleHeaderBackground);
-    window.addEventListener("scroll", handleHeaderScroll);
-});
-
-
-//Hamburger
-document.addEventListener("DOMContentLoaded", () => {
-    const hamburger = document.querySelector(".hamburger");
-    const navLinks = document.querySelector(".nav-links");
-
-    hamburger.addEventListener("click", () => {
-        navLinks.classList.toggle("active");
-    });
-});
+//     // Check on page load and during scroll
+//     handleHeaderBackground();
+//     window.addEventListener("scroll", handleHeaderBackground);
+//     window.addEventListener("scroll", handleHeaderScroll);
+// });
 
 //Adjust hero Height Dynamically
 // document.addEventListener("DOMContentLoaded", () => {
