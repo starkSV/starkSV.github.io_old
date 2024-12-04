@@ -112,21 +112,23 @@ document.getElementById("contact-form").addEventListener("submit", function (e) 
         });
 });
 
-// Interactive Canvas in Hero Section
+// Interactive Canvas in Body
 document.addEventListener("DOMContentLoaded", () => {
     const canvas = document.getElementById("interactive-bg");
     const ctx = canvas.getContext("2d");
     const particles = [];
-    const numParticles = 100;
-    const maxDistance = 100;
+    const numParticles = 150;
+    const maxDistance = 80;
 
+    // Resize Canvas to Fit Viewport
     const resizeCanvas = () => {
-        canvas.width = canvas.offsetWidth;
-        canvas.height = canvas.offsetHeight;
+        canvas.width = window.innerWidth; // Full viewport width
+        canvas.height = window.innerHeight; // Full viewport height
     };
     window.addEventListener("resize", resizeCanvas);
     resizeCanvas();
 
+    // Particle Constructor
     class Particle {
         constructor(x, y) {
             this.x = x || Math.random() * canvas.width;
@@ -144,15 +146,18 @@ document.addEventListener("DOMContentLoaded", () => {
         draw() {
             ctx.beginPath();
             ctx.arc(this.x, this.y, 2, 0, Math.PI * 2);
-            ctx.fillStyle = "#007bff"; // Fixed color #007bff
+            ctx.fillStyle = "rgba(255, 255, 255, 0.8)"; // Light particles for dark sections #007bff
+
             ctx.fill();
         }
     }
 
+    // Create Particles
     for (let i = 0; i < numParticles; i++) {
         particles.push(new Particle());
     }
 
+    // Draw Lines Between Close Particles
     const drawLines = () => {
         for (let i = 0; i < particles.length; i++) {
             for (let j = i + 1; j < particles.length; j++) {
@@ -164,7 +169,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     ctx.beginPath();
                     ctx.moveTo(particles[i].x, particles[i].y);
                     ctx.lineTo(particles[j].x, particles[j].y);
-                    ctx.strokeStyle = `rgba(0, 123, 255, ${1 - dist / maxDistance})`;
+                    ctx.strokeStyle = `rgba(0, 123, 255, ${1 - dist / maxDistance})`; // Line color
                     ctx.lineWidth = 1;
                     ctx.stroke();
                 }
@@ -172,6 +177,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     };
 
+    // Animate Particles
     const animate = () => {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -185,6 +191,7 @@ document.addEventListener("DOMContentLoaded", () => {
     };
     animate();
 });
+
 
 // Game
 document.addEventListener("DOMContentLoaded", () => {
@@ -267,17 +274,17 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 //Adjust hero Height Dynamically
-document.addEventListener("DOMContentLoaded", () => {
-    const header = document.querySelector("header");
-    const hero = document.querySelector(".hero");
+// document.addEventListener("DOMContentLoaded", () => {
+//     const header = document.querySelector("header");
+//     const hero = document.querySelector(".hero");
 
-    // Adjust hero section padding dynamically
-    const adjustHeroPadding = () => {
-        const headerHeight = header.offsetHeight;
-        hero.style.paddingTop = `${headerHeight}px`;
-    };
+//     // Adjust hero section padding dynamically
+//     const adjustHeroPadding = () => {
+//         const headerHeight = header.offsetHeight;
+//         hero.style.paddingTop = `${headerHeight}px`;
+//     };
 
-    // Run adjustments on page load and resize
-    adjustHeroPadding();
-    window.addEventListener("resize", adjustHeroPadding);
-});
+//     // Run adjustments on page load and resize
+//     adjustHeroPadding();
+//     window.addEventListener("resize", adjustHeroPadding);
+// });

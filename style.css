@@ -13,16 +13,17 @@ header {
     width: 100%;
     z-index: 10;
     box-sizing: border-box;
-    background-color: rgba(255, 255, 255, 0.9); /* Neutral white with transparency */
+    background-color: #000;
+    /*background-color: rgba(255, 255, 255, 0.9);  Neutral white with transparency */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
     width: 100%;
-    color: #222; /* Dark neutral text */
-    height: 100px;
-    line-height: 80px; /* Matches header height */
+    height: 80px;
+    line-height: 60px; /* Matches header height */
     transition: height 0.3s ease, line-height 0.3s ease;
 }
 header h1 {
     font-size: 2.5rem;
+    color: #ffffff;
 }
 header p {
     margin-top: 0.5rem;
@@ -39,10 +40,10 @@ header .container {
 }
 
 header.scrolled {
-    background-color: #fff; /* Solid color on scroll */
+    background-color: #000000; /* Solid color on scroll */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    height: 80px;
-    line-height: 60px; /* Matches reduced height */
+    height: 60px;
+    line-height: 40px; /* Matches reduced height */
 }
 
 body {
@@ -56,6 +57,7 @@ body {
     line-height: 1.6;
     font-family: Arial, sans-serif;
     transition: background-color 0.3s ease, color 0.3s ease;
+    z-index: -1;
 }
 
 body::before {
@@ -65,24 +67,37 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background: white; /* Black overlay with 50% opacity */
+    background: rgb(61, 61, 61); /* Black overlay with 50% opacity */
     z-index: -1; /* Places it behind the content */
 }
 
+/* Headings */
+h1, h2, h3 {
+    color: #222; /* Darker gray for emphasis */
+}
+
+/* Paragraphs */
+p {
+    color: #ffffff; /* Softer gray for better contrast */
+}
+
+/* Links */
+a {
+    color: #007bff; /* Accent blue */
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+    color: #0056b3; /* Darker blue on hover */
+}
+
 footer {
-    text-align: center;
-    padding: 1rem;
-    background: #333;
-    color: #fff;
     margin-top: 2rem;
     text-align: center;
-    background-color: #f0f0f0;
+    /* background: linear-gradient(135deg, rgba(200, 200, 200, 1), rgba(240, 240, 240, 1)); */
+    background: #000;
+    color: #ffffff;
     padding: 1rem 2rem;
-    color: #555;
-    background: linear-gradient(135deg, rgba(200, 200, 200, 1), rgba(240, 240, 240, 1));
-    color: #333;
-    padding: 1rem 2rem;
-    text-align: center;
     border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
@@ -91,9 +106,9 @@ nav {
 }
 nav a {
     color: #fff;
-    text-decoration: none;
     margin: 0 1rem;
     font-weight: bold;
+    text-decoration: none; /* Remove underline if present */
 }
 nav a:hover {
     text-decoration: underline;
@@ -121,6 +136,16 @@ nav a:hover {
     width: 100%;
 }
 
+/* Hover and Focus States */
+.navbar .nav-link:hover,
+.navbar .nav-link:focus {
+    text-decoration: none; /* Prevent underline */
+    color: #007bff; /* Change text color on hover */
+    background-color: transparent; /* Ensure no background */
+    outline: none; /* Remove focus outline */
+    box-shadow: none; /* Remove focus shadows */
+}
+
 .nav-links {
     display: none; /* Hide links initially */
     flex-direction: column; /* Stack items vertically */
@@ -141,7 +166,7 @@ nav a:hover {
 
 .nav-link {
     text-decoration: none;
-    color: #000;
+    color: #ffffff;
     font-weight: bold;
     transition: color 0.3s ease;
 }
@@ -152,6 +177,29 @@ nav a:hover {
 
 .nav-link:last-child {
     border-bottom: none; /* Remove border from the last link */
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        display: none; /* Hide navigation */
+    }
+
+    header .container {
+        display: flex;
+        justify-content: center; /* Center horizontally */
+        align-items: center; /* Center vertically */
+        height: 100%; /* Ensure full height for proper centering */
+    }
+
+    header h1 {
+        margin: 0; /* Remove any default margin */
+    }
+
+    header {
+        height: 60px; /* Adjust as necessary */
+        padding: 0 1rem;
+    }
+    
 }
 
 /*Hammburger*/
@@ -191,8 +239,10 @@ nav a:hover {
 /* Hero Section */
 .hero {
     text-align: center;
-    padding: calc(4rem + 1rem) 1rem 2rem; /* 4rem is header height + 1rem spacing */
-    margin-top: 5vh; /* Ensure no overlap */
+    margin-top: 7rem;
+    padding-bottom: 2rem;
+    /*padding: calc(4rem + 1rem) 1rem 2rem;  4rem is header height + 1rem spacing */
+    /* margin-top: 5vh; Ensure no overlap */
     position: relative; /* Ensures content stays above the canvas */
     z-index: 1;
     color: #fff; /* White text for better contrast with overlay */
@@ -205,10 +255,12 @@ nav a:hover {
 .hero h2 {
     font-size: 2rem;
     margin-bottom: 1rem;
+    color: #fff;
 }
 .hero p {
     font-size: 1.2rem;
     margin-bottom: 1.5rem;
+    color: #fff;
 }
 .hero a {
     text-decoration: none;
@@ -225,12 +277,13 @@ nav a:hover {
 
 /* Interactive Background Canvas */
 #interactive-bg {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0; /* Behind hero content */
+    width: 100vw; /* Full viewport width */
+    height: 100vh; /* Full viewport height */
+    z-index: -1; /* Place it behind all content */
+    pointer-events: none; /* Prevent interaction with the canvas */
 }
 
 /* Section */
@@ -421,6 +474,64 @@ nav a:hover {
     color: #007bff;
     margin-right: 0.5rem;
     font-size: 1.2rem;
+}
+
+/* Projects Section */
+
+.projects-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.project-card {
+    background-color: #fff;
+    padding: 1.5rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: #f0f8ff; /* Light background change */
+}
+
+.project-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.project-card p {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    color: #555;
+}
+
+.project-card .links {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.project-card .btn {
+    text-decoration: none;
+    color: #fff;
+    background-color: #007bff;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.project-card .btn:hover {
+    background-color: #0056b3;
 }
 
 /* Contact Section */
@@ -804,26 +915,6 @@ a:hover {
 .card:hover {
     transform: translateY(-5px);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-/* Headings */
-h1, h2, h3 {
-    color: #222; /* Darker gray for emphasis */
-}
-
-/* Paragraphs */
-p {
-    color: #555; /* Softer gray for better contrast */
-}
-
-/* Links */
-a {
-    color: #007bff; /* Accent blue */
-    text-decoration: none;
-}
-a:hover {
-    text-decoration: underline;
-    color: #0056b3; /* Darker blue on hover */
 }
 
 /* Responsive Navbar */
