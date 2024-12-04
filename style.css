@@ -179,29 +179,6 @@ nav a:hover {
     border-bottom: none; /* Remove border from the last link */
 }
 
-@media (max-width: 768px) {
-    .navbar {
-        display: none; /* Hide navigation */
-    }
-
-    header .container {
-        display: flex;
-        justify-content: center; /* Center horizontally */
-        align-items: center; /* Center vertically */
-        height: 100%; /* Ensure full height for proper centering */
-    }
-
-    header h1 {
-        margin: 0; /* Remove any default margin */
-    }
-
-    header {
-        height: 60px; /* Adjust as necessary */
-        padding: 0 1rem;
-    }
-    
-}
-
 /*Hammburger*/
 .hamburger {
     display: none; /* Hidden on large screens */
@@ -952,6 +929,29 @@ a:hover {
     .hamburger {
         display: none; /* Hide hamburger on larger screens */
     }
+}
+
+@media (max-width: 1020px) {
+    .navbar {
+        display: none; /* Hide navigation */
+    }
+
+    header .container {
+        display: flex;
+        justify-content: center; /* Center horizontally */
+        align-items: center; /* Center vertically */
+        height: 100%; /* Ensure full height for proper centering */
+    }
+
+    header h1 {
+        margin: 0; /* Remove any default margin */
+    }
+
+    header {
+        height: 60px; /* Adjust as necessary */
+        padding: 0 1rem;
+    }
+    
 }
 
 /* Reorder for Small Screens */
