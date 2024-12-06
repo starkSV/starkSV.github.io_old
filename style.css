@@ -135,7 +135,7 @@ p {
 
 /* Links */
 a {
-    color: #007bff; /* Accent blue */
+    color: #003d80; /* Accent blue */
     text-decoration: none;
 }
 a:hover {
@@ -184,6 +184,7 @@ footer {
     position: relative; /* Ensures content stays above the canvas */
     z-index: 1;
     color: #fff; /* White text for better contrast with overlay */
+    background-color: #007bff;
     background: transparent;
     border-radius: 10px;
     box-shadow: none;
@@ -621,7 +622,7 @@ footer {
 
 #start-game-btn {
     background-color: #007bff;
-    color: white;
+    color: #ffffff;
     padding: 0.5rem 1rem;
     border: none;
     border-radius: 5px;
