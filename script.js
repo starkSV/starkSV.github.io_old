@@ -190,13 +190,13 @@ document.addEventListener("DOMContentLoaded", () => {
         mouse.y = e.clientY - rect.top;
 
         // Add a particle at the mouse position
-        console.log("Relative mouse position:", mouse.x, mouse.y);
+        //console.log("Relative mouse position:", mouse.x, mouse.y);
         particles.push(new Particle(mouse.x, mouse.y));
 
         // Limit particles to avoid performance issues
         if (particles.length > numParticles + 20) {
             particles.shift(); // Remove the oldest particle
-            console.log("Particle removed. Total particles:", particles.length);
+            //console.log("Particle removed. Total particles:", particles.length);
         }
     });
 
