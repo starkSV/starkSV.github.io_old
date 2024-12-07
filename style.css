@@ -5,24 +5,45 @@
     box-sizing: border-box;
 }
 
+/* Dynamic Gradient Background */
+.dynamic-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Place behind content */
+    background: linear-gradient(45deg, #ff9a9e, #fad0c4, #fbc2eb);
+    background-size: 400% 400%; /* Large size for smoother transitions */
+    animation: gradientAnimation 15s ease infinite;
+}
+
 /* General Header Styling */
 .custom-header {
-    background-color: #000; /* Dark background */
-    padding: 1rem 2rem;
-    border-radius: 5px; /* Rounded edges */
-    margin: 1rem auto; /* Center the header */
-    max-width: 1200px; /* Maximum width for the header */
-    width: 100%; /* Width adjustment */
-    height: 80px;
-    line-height: 60px; /* Matches header height */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Subtle shadow */
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    background-color: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    z-index: 10;
-    position: relative; /* Ensure proper centering */
-    transition: height 0.3s ease, line-height 0.3s ease;
+    transition: all 0.3s ease-in-out;
+    width: 100%;
+    border-radius: 10px;
+    margin: 1rem auto; /* Center the header */
+    max-width: 1200px; /* Maximum width for the header */
+    transition: height 0.3s ease, padding 0.3s ease;
 }
+
+.custom-header.compact {
+    background-color: rgba(0, 0, 0, 0.95);
+    padding: 0.3rem 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
 /* Logo Section */
 .logo {
     display: flex;
@@ -60,7 +81,7 @@
     transition: color 0.3s ease;
 }
 .navbar ul li a:hover {
-    color: #ffffff; /* Highlighted on hover */
+    color: #007bff; /* Highlighted on hover */
 }
 
 /* Dropdown Styling (Optional) */
@@ -96,9 +117,13 @@
     justify-content: flex-end;
 }
 
+.navbar a.active {
+    color: #007bff;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
 body {
-    background: url('img/black-linen-2.png') repeat;
-    background-size: 640px 640px;
     margin: 0;
     padding: 0;
     background-color: #f4f4f4;
@@ -108,6 +133,7 @@ body {
     font-family: Arial, sans-serif;
     transition: background-color 0.3s ease, color 0.3s ease;
     z-index: -1;
+    overflow: visible;
 }
 
 body::before {
@@ -424,6 +450,8 @@ footer {
     width: 300px;
     text-align: left;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
 }
 
 .project-card:hover {
@@ -457,11 +485,64 @@ footer {
     background-color: #007bff;
     padding: 0.5rem 1rem;
     border-radius: 5px;
+    font-size: small;
     transition: background-color 0.3s ease;
 }
 
 .project-card .btn:hover {
     background-color: #0056b3;
+}
+
+.project-card .details {
+    position: absolute;
+    bottom: -100%; /* Initially hidden */
+    left: 0;
+    width: 100%;
+    background: #000; /*rgba(0, 123, 255, 0.9)*/
+    color: #fff;
+    padding: 1rem;
+    transition: bottom 0.3s ease;
+}
+
+.project-card:hover .details {
+    bottom: 0; /* Reveal on hover */
+}
+
+.project-card .details a {
+    color: #fff;
+    text-decoration: none;
+    margin-right: 1rem;
+}
+
+.project-card .details a:hover {
+    text-decoration: underline;
+}
+
+.status-tag {
+    position: absolute;
+    top: 10px; /* Adjust based on your card's padding */
+    right: 10px; /* Adjust based on your card's padding */
+    background-color: #007bff; /* Blue for Completed */
+    color: white;
+    font-size: 0.8rem;
+    font-weight: bold;
+    padding: 0.3rem 0.6rem;
+    border-radius: 12px;
+    text-transform: uppercase;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Optional shadow */
+}
+
+/* Different Status Colors */
+.status-tag.completed {
+    background-color: #28a745; /* Green for Completed */
+}
+
+.status-tag.ongoing {
+    background-color: #ffc107; /* Yellow for Ongoing */
+}
+
+.status-tag.pending {
+    background-color: #dc3545; /* Red for Pending */
 }
 
 /* Contact Section */
@@ -667,19 +748,6 @@ footer {
 .latest-posts ol li a:hover {
     color: #0056b3; /* Highlight color on hover */
     text-decoration: underline;
-}
-
-/* Dynamic Gradient Background */
-.dynamic-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1; /* Place behind content */
-    background: linear-gradient(45deg, #ff9a9e, #fad0c4, #fbc2eb);
-    background-size: 400% 400%; /* Large size for smoother transitions */
-    animation: gradientAnimation 15s ease infinite;
 }
 
 /* Gradient Animation Keyframes */

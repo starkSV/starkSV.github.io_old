@@ -184,7 +184,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Add Hover Interaction
     canvas.addEventListener("mousemove", (e) => {
-        console.log("Mouse moved at:", e.clientX, e.clientY);
+        //console.log("Mouse moved at:", e.clientX, e.clientY);
         const rect = canvas.getBoundingClientRect();
         mouse.x = e.clientX - rect.left;
         mouse.y = e.clientY - rect.top;
@@ -272,36 +272,59 @@ document.addEventListener("DOMContentLoaded", () => {
     startGameBtn.addEventListener("click", startGame);
 });
 
-// //Header
-// document.addEventListener("DOMContentLoaded", () => {
-//     const header = document.querySelector("header");
+// Spy Scroll
+document.addEventListener("DOMContentLoaded", () => {
+    const navLinks = document.querySelectorAll(".navbar a");
+    const sections = Array.from(navLinks).map(link => document.querySelector(link.getAttribute("href")));
 
-//     const handleHeaderBackground = () => {
-//         if (window.scrollY > 50) {
-//             header.classList.add("scrolled");
-//         } else {
-//             header.classList.remove("scrolled");
-//         }
-//     };
+    const setActiveLink = () => {
+        let currentSection = sections.find(section => {
+            const rect = section.getBoundingClientRect();
+            return rect.top <= 150 && rect.bottom >= 150;
+        });
 
-//     // Check on page load and during scroll
-//     handleHeaderBackground();
-//     window.addEventListener("scroll", handleHeaderBackground);
-//     window.addEventListener("scroll", handleHeaderScroll);
-// });
+        navLinks.forEach(link => link.classList.remove("active"));
+        if (currentSection) {
+            const activeLink = document.querySelector(`.navbar a[href="#${currentSection.id}"]`);
+            if (activeLink) activeLink.classList.add("active");
+        }
+    };
 
-//Adjust hero Height Dynamically
-// document.addEventListener("DOMContentLoaded", () => {
-//     const header = document.querySelector("header");
-//     const hero = document.querySelector(".hero");
+    window.addEventListener("scroll", setActiveLink);
+});
 
-//     // Adjust hero section padding dynamically
-//     const adjustHeroPadding = () => {
-//         const headerHeight = header.offsetHeight;
-//         hero.style.paddingTop = `${headerHeight}px`;
-//     };
+// Stikcy Header
+document.addEventListener("DOMContentLoaded", () => {
+    const header = document.querySelector(".custom-header");
+    const body = document.body;
 
-//     // Run adjustments on page load and resize
-//     adjustHeroPadding();
-//     window.addEventListener("resize", adjustHeroPadding);
-// });
+    if (body.classList.contains("dynamic-bg")) {
+        //console.warn("Body has class 'dynamic-bg'. Checking for constraints...");
+        body.style.height = "auto"; // Ensure body height is not constrained
+        body.style.overflow = "visible"; // Allow sticky to work
+    }
+
+    // Debug header's parent constraints
+    const parent = header.parentElement;
+    //console.log("Header parent styles:", window.getComputedStyle(parent));
+});
+
+//Dynamic Header Adjustment
+document.addEventListener("DOMContentLoaded", () => {
+    const header = document.querySelector(".custom-header");
+
+    if (!header) {
+        console.error("Header element not found.");
+        return;
+    }
+
+    window.addEventListener("scroll", () => {
+        if (window.scrollY > 50) {
+            if (!header.classList.contains("compact")) {
+                header.classList.add("compact");
+            }
+        } else {
+            header.classList.remove("compact");
+        }
+    });
+});
